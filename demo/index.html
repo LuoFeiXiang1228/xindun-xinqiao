@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="心盾与心桥：评价校准与关怀协作的离线交互原型。仅使用虚构数据。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>校准 · 心盾与心桥｜离线原型</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="logic.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header class="topbar">
+    <a class="brand" href="#main"><span class="brandmark" aria-hidden="true">校</span><span>校准 <small>心盾 · 心桥</small></span></a>
+    <nav aria-label="主要导航"><a href="#shield">评价校准</a><a href="#bridge">关怀协作</a><a href="#boundaries">使用边界</a></nav>
+    <span class="badge">离线概念原型</span>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">CHECK BEFORE CONCLUDING</p>
+        <h1 id="hero-title">在下结论之前，<br>给核对留一个位置。</h1>
+        <p class="intro">评价需要背景，关怀需要下一步。<br>心盾关注填表前的核对，心桥关注协作中的交接。</p>
+        <div class="hero-actions"><a class="primary linkbutton" href="#shield">体验心盾 <span aria-hidden="true">↗</span></a><a class="quiet linkbutton" href="#bridge">查看协作流程 →</a></div>
+        <p class="caption">无账号 · 无上传 · 仅虚构案例</p>
+      </div>
+      <div class="hero-diagram" aria-label="设计原理：事实先记录，条件先核对，结论可复核">
+        <span class="diagram-label">一个原理，两个场景</span>
+        <div class="diagram-line"><span class="number">01</span><div><b>事实先记录</b><small>保留发生了什么</small></div><span aria-hidden="true">↘</span></div>
+        <div class="diagram-line emphasized"><span class="number">02</span><div><b>条件先核对</b><small>确认输入与流程条件</small></div><span aria-hidden="true">↘</span></div>
+        <div class="diagram-line"><span class="number">03</span><div><b>结论可复核</b><small>约定下一次确认</small></div><span aria-hidden="true">✓</span></div>
+        <p>“元闸门”是本项目的设计概念，<br>当前演示不证明规则有效性。</p>
+      </div>
+    </section>
+    <div class="notice"><span class="notice-mark" aria-hidden="true">i</span><p><strong>这里是演示，不是求助受理入口。</strong>所有状态只在当前页面内展示。角色切换、提交和转介均不连接真实服务。</p><button id="reset" class="quiet" type="button">重置演示</button></div>
+    <p id="reset-status" class="sr-only" role="status"></p>
+
+    <section id="shield" class="section" aria-labelledby="shield-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / 心盾 · 评价校准</p><h2 id="shield-title">先核对，再决定何时下结论。</h2></div><span class="badge muted">示例规则 · 非测评</span></div>
+      <div class="shield-grid">
+        <div class="card check-card">
+          <p>用四项虚构选择试试不同结果。选择不会保存或上传；无需填写真实状态。</p>
+          <div id="check-fields"></div>
+          <noscript><p>请启用 JavaScript 体验核对交互。此页面仍可阅读产品与边界说明。</p></noscript>
+          <div class="progress-row"><span id="progress">已选 0 / 4 项</span><div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div></div>
+        </div>
+        <aside class="card result-card" aria-labelledby="result-title">
+          <p class="eyebrow">核对提示</p><div class="result-icon" id="result-icon" aria-hidden="true">…</div>
+          <h3 id="result-title">等待完成核对</h3><p id="result-text" role="status" aria-live="polite" aria-atomic="true">完成四项示例选择后，再查看提示。</p>
+          <div class="result-divider"></div><p class="small">演示使用“两项需要留意”作为提示条件，未经效果验证。提示不限制记录，也不进入成绩、排名或奖惩。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="bridge" class="section" aria-labelledby="bridge-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / 心桥 · 关怀协作</p><h2 id="bridge-title">让每一步，都有下一位负责人。</h2></div><span class="badge muted">所有案例均为虚构</span></div>
+      <p class="section-intro">以下按钮切换讲解视角，不具备身份认证能力。真实权限必须由服务端验证。</p>
+      <div class="roles" role="group" aria-label="切换演示角色视角">
+        <button type="button" data-role="student" aria-pressed="true">学生本人</button>
+        <button type="button" data-role="peer" aria-pressed="false">朋辈观察者</button>
+        <button type="button" data-role="counselor" aria-pressed="false">辅导员</button>
+        <button type="button" data-role="professional" aria-pressed="false">授权专业人员</button>
+      </div>
+      <div class="bridge-grid">
+        <div class="card role-card"><p class="eyebrow">当前视角</p><h3 id="role-title">学生本人</h3><p id="role-description">自己的求助进度与公开说明。</p><div class="scope"><span>设计边界</span><p id="role-boundary">只能查看自己的记录。</p></div><button id="simulate" class="primary" type="button">模拟发起求助</button><p id="simulate-status" class="small" role="status">按钮仅展示模拟结果，不发送信息。</p></div>
+        <div class="card task-card"><div class="task-header"><h3>虚构任务视图</h3><span id="task-count" class="badge muted">1 个示例</span></div><div id="task-list"></div><p class="small">任务编号、时间和状态均为构造数据，没有对应的学生。</p></div>
+      </div>
+      <div class="flow-label"><h3>从观察到跟进</h3><span class="small">点击环节，查看该步的责任与边界</span></div>
+      <div class="flow" role="group" aria-label="协作流程环节">
+        <button type="button" data-step="0" aria-pressed="true"><span>01</span>观察 / 求助</button>
+        <button type="button" data-step="1" aria-pressed="false"><span>02</span>授权受理</button>
+        <button type="button" data-step="2" aria-pressed="false"><span>03</span>沟通核对</button>
+        <button type="button" data-step="3" aria-pressed="false"><span>04</span>需要时转介</button>
+        <button type="button" data-step="4" aria-pressed="false"><span>05</span>约定跟进</button>
+      </div>
+      <div class="card flow-detail" id="flow-detail" aria-live="polite"></div>
+    </section>
+
+    <section id="boundaries" class="section" aria-labelledby="boundary-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / 使用边界</p><h2 id="boundary-title">把设计目标与当前能力说清楚。</h2></div></div>
+      <div class="boundary-grid">
+        <article class="card"><span class="boundary-number">A</span><h3>有交互，没有业务后台</h3><p>没有真实登录、消息通知、数据库或 AI 服务。角色与流程卡片展示的是设计目标。</p></article>
+        <article class="card"><span class="boundary-number">B</span><h3>有提示，没有健康判断</h3><p>示例规则不能用于筛查、诊断或给人贴标签。未触发提示不代表健康或评价有效。</p></article>
+        <article class="card"><span class="boundary-number">C</span><h3>有方案，真实试用需审核</h3><p>先用虚构数据验证流程。涉及真实学生或记录前，由实施方明确责任、必要授权和人工处理安排。</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><div><b>校准 · 心盾与心桥</b><p>© 2026 罗费翔（LuoFeiXiang） / 开源原型 v0.1.0</p></div><a href="../README.md">阅读项目文档 ↗</a><a href="../LICENSE.md">代码 MIT · 文档 CC BY 4.0</a></footer>
+</body>
+</html>
