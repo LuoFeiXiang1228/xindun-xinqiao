@@ -42,7 +42,7 @@ git push -u origin main
 
 ## 建议的仓库介绍
 
-检查工作流使用 [actions/checkout](https://github.com/actions/checkout) 与 [actions/setup-node](https://github.com/actions/setup-node) 官方当前文档中的 v7 示例，并仅授予仓库读取权限。工作流尚未在目标 GitHub 仓库实际运行。
+检查工作流使用 [actions/checkout](https://github.com/actions/checkout) 与 [actions/setup-node](https://github.com/actions/setup-node) 官方当前文档中的 v7 示例，并仅授予仓库读取权限。2026-10-14，首次 [GitHub Actions 检查](https://github.com/LuoFeiXiang1228/xindun-xinqiao/actions/runs/38543359688)已通过。
 
 中文：职业教育评价校准与关怀协作的开放设计与离线交互原型。
 
