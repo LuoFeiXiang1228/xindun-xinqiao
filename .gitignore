@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.zip
+*.xlsx
+*.docx
+*.pdf
+work/
+private/
+.DS_Store
+Thumbs.db
