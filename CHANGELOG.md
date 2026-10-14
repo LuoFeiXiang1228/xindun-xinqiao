@@ -9,4 +9,5 @@
 - 明确前端角色视角与服务端权限控制的区别。
 - 添加规则测试、发布检查、CI 和贡献说明。
 - 作者确认个人作品授权，署名罗费翔（LuoFeiXiang）；代码采用 MIT，文档采用 CC BY 4.0，完整许可正文已加入。
-- 未进行 GitHub 上传或站点发布，账号尚待作者创建。
+- 2026-10-14：首版发布到 [LuoFeiXiang1228/xindun-xinqiao](https://github.com/LuoFeiXiang1228/xindun-xinqiao)，25 个文件完整上传，首次 GitHub Actions 测试与发布检查通过。
+- 在线演示站点尚未部署；当前可下载仓库并在本地打开 HTML。

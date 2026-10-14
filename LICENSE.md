@@ -21,7 +21,7 @@
 
 文档署名示例：
 
-> 《校准 · 心盾与心桥》，罗费翔（LuoFeiXiang），2026，CC BY 4.0。基于原项目修改；修改内容：〔填写实际改动〕。原项目链接：〔仓库创建后填写〕。
+> 《校准 · 心盾与心桥》，罗费翔（LuoFeiXiang），2026，CC BY 4.0。基于原项目修改；修改内容：〔填写实际改动〕。原项目：[LuoFeiXiang1228/xindun-xinqiao](https://github.com/LuoFeiXiang1228/xindun-xinqiao)。
 
 上述示例中的修改说明与原项目链接依实际情况填写，不要求改变标准许可证条款。
 

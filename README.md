@@ -8,13 +8,19 @@
 
 GitHub 作者账号：[LuoFeiXiang1228](https://github.com/LuoFeiXiang1228)。
 
+项目仓库：[LuoFeiXiang1228/xindun-xinqiao](https://github.com/LuoFeiXiang1228/xindun-xinqiao)。
+
 心盾提供填表前核对与复核提示；心桥展示观察、受理、沟通、转介和跟进的协作流程。本仓库面向职业教育场景，分享产品设计与交互原型。
 
 > 当前状态：**开源概念验证原型**。仅实现离线静态演示，没有登录、真实上报、数据库、AI 服务或生产权限控制。代码采用 MIT，文档采用 CC BY 4.0，允许按许可复制、修改与商用，须保留相应署名及许可声明。
 
 ## 快速体验
 
-直接用浏览器打开 [demo/index.html](demo/index.html)。无需安装依赖，也无需账号。页面使用虚构案例，选择只在当前页面内存中存在；刷新或点击“重置演示”即可清除。
+下载或克隆本仓库后，在本地用浏览器打开 [demo/index.html](demo/index.html)。无需安装依赖，也无需账号。GitHub 文件页展示的是源码；在线演示站点尚未部署。页面使用虚构案例，选择只在当前页面内存中存在；刷新或点击“重置演示”即可清除。
+
+```sh
+git clone https://github.com/LuoFeiXiang1228/xindun-xinqiao.git
+```
 
 演示包括：
 
