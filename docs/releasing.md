@@ -38,7 +38,9 @@ git push -u origin main
 
 ## 展示演示
 
-推荐先用本地 HTML 展示。若需要 GitHub Pages，可在完成公开发布审核后另行配置静态站点，入口为 `demo/index.html`。当前包没有自动部署工作流，检查 CI 不会发布站点。
+在线演示地址为 [GitHub Pages](https://luofeixiang1228.github.io/xindun-xinqiao/)。仓库 Settings → Pages 的发布源设置为 GitHub Actions。工作流先执行测试和发布检查，通过后仅在 main 分支的推送或手动运行中部署 `demo/`，PR 不部署。文档与完整许可留在 GitHub 仓库，演示页使用指向仓库的链接。
+
+部署采用 [GitHub 官方自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)中的 configure-pages、upload-pages-artifact 与 deploy-pages；仅部署任务具有 Pages 写入和 OIDC 权限。此站点是公开静态演示，不接收真实业务数据。
 
 ## 建议的仓库介绍
 
