@@ -17,12 +17,27 @@
   };
   function render() {
     const view = workflowView(task, role);
+    const currentStep = { draft: 0, submitted: 1, accepted: 2, discussed: 3, referred: 3, following: 4, closed: 5 }[task.status];
+    const directFollow = task.history.some(item => item.action === 'follow');
+    for (let index = 0; index < 5; index++) {
+      const item = byId(`track-${index}`);
+      const trackState = !view.visible ? 'private' : index === 3 && directFollow ? 'skipped' : index < currentStep ? 'complete' : index === currentStep ? 'active' : 'waiting';
+      item.dataset.state = trackState;
+      item.setAttribute('aria-current', trackState === 'active' ? 'step' : 'false');
+      item.querySelector('span').textContent = trackState === 'complete' ? '✓' : trackState === 'skipped' ? '—' : String(index + 1);
+      if (index === 3) item.querySelector('small').textContent = directFollow && view.visible ? '本次无需转介' : '专业人员';
+    }
+    const neededRole = task.status === 'draft' ? 'student' : ['submitted', 'accepted', 'discussed'].includes(task.status) ? 'counselor' : task.status === 'referred' ? 'professional' : task.owner === '辅导员' ? 'counselor' : 'professional';
+    const roleNames = { student: '学生本人', counselor: '辅导员', professional: '授权专业人员' };
+    byId('next-role').hidden = !view.visible || task.status === 'closed' || neededRole === role;
+    byId('next-role').textContent = `切换到${roleNames[neededRole]}，继续下一步 →`;
+    byId('next-role').dataset.roleTarget = neededRole;
     byId('journey-status').textContent = view.status;
     byId('journey-owner').textContent = view.visible ? `下一步负责人：${view.owner}` : '朋辈视角仅展示上报指引';
     byId('journey-guide').textContent = view.visible ? guide[task.status] : '此处不展示他人任务状态、负责人或模拟操作记录。切换到其他演示视角可继续体验。';
     const actions = byId('journey-actions'); actions.replaceChildren();
     for (const action of availableActions(task, role)) {
-      const button = node('button', action.label); button.type = 'button'; button.className = 'primary';
+      const button = node('button', action.label); button.type = 'button'; button.className = action.key === 'follow' ? 'quiet' : 'primary';
       button.addEventListener('click', () => {
         task = transitionWorkflow(task, action.key, role);
         render();
@@ -37,6 +52,11 @@
     view.history.forEach(item => history.append(node('li', `第 ${item.sequence} 步 · ${item.label}（${item.role === 'student' ? '学生本人' : item.role === 'counselor' ? '辅导员' : '授权专业人员'}）`)));
   }
   document.querySelectorAll('[data-role]').forEach(button => button.addEventListener('click', () => { role = button.dataset.role; render(); }));
+  byId('next-role').addEventListener('click', () => {
+    const needed = byId('next-role').dataset.roleTarget;
+    const button = Array.from(document.querySelectorAll('[data-role]')).find(item => item.dataset.role === needed);
+    if (button) { button.click(); byId('journey-status').focus(); }
+  });
   byId('restart-journey').addEventListener('click', () => { task = createWorkflow(); render(); });
   const reviewCopy = [
     '事实记录：虚构练习中漏了两项步骤，其他步骤已完成。',
@@ -50,19 +70,22 @@
     const log = byId('review-log'); log.replaceChildren();
     if (!reviewStage) log.append(node('li', '等待开始；练习不评价任何真实个人。'));
     reviewCopy.slice(0, reviewStage).forEach(text => log.append(node('li', text)));
+    byId('review-fact-copy').textContent = reviewStage >= 1 ? '记录显示：练习中漏了两项步骤，其他步骤已完成。' : '等待记录示例事实';
+    byId('review-before-copy').textContent = reviewStage >= 2 ? '“我可能还没有掌握这两项步骤。”这是暂时判断，不是对整体能力的定论。' : '完成事实记录后，再看暂时判断';
+    byId('review-after-copy').textContent = reviewStage >= 3 ? '核对操作单：其中一项已完成但漏记。修订为：“接下来需要练习和确认的是剩下的一项。”' : '补充信息后，在这里看修订结果';
   }
   ['record-fact', 'record-judgment', 'review-judgment'].forEach((id, index) => {
     byId(id).addEventListener('click', () => {
       if (reviewStage !== index) return;
       reviewStage++; renderReview();
       if (reviewStage < 3) byId(['record-judgment', 'review-judgment'][reviewStage - 1]).focus();
-      else byId('review-log').focus();
+      else byId('review-after-copy').focus();
     });
   });
   byId('generate-feedback').addEventListener('click', () => {
     const meaning = byId('feedback-meaning').value;
     byId('feedback-draft').value = [
-      '心盾心桥 v0.2.0 · 使用反馈草稿（本人可核对后手动提交）',
+      '心盾心桥 v0.3.0 · 使用反馈草稿（本人可核对后手动提交）',
       `自报任务完成情况：${byId('feedback-completion').value}`,
       `下一步负责人是否清楚：${byId('feedback-owner').value}`,
       `对“未触发复核提示”的理解：${meaning}`,
@@ -85,5 +108,6 @@
   });
   byId('journey-status').tabIndex = -1;
   byId('review-log').tabIndex = -1;
+  byId('review-after-copy').tabIndex = -1;
   render(); renderReview();
 })();

@@ -3,129 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="心盾与心桥：评价校准与关怀协作的离线交互原型。仅使用虚构数据。">
+  <meta name="description" content="心盾与心桥：评价校准与关怀协作交互原型。评价有留白，关怀有回应。">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
-  <title>校准 · 心盾与心桥｜离线原型</title>
-  <link rel="stylesheet" href="styles.css?v=0.2.0-1">
-  <script src="logic.js?v=0.2.0-1" defer></script>
-  <script src="app.js?v=0.2.0-1" defer></script>
-  <script src="journey.js?v=0.2.0-1" defer></script>
+  <title>心盾 · 心桥｜留一点空间，给下一步</title>
+  <link rel="stylesheet" href="styles.css?v=0.3.0">
+  <script src="logic.js?v=0.3.0" defer></script>
+  <script src="app.js?v=0.3.0" defer></script>
+  <script src="journey.js?v=0.3.0" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">跳到主要内容</a>
   <header class="topbar">
-    <a class="brand" href="#main"><span class="brandmark" aria-hidden="true">校</span><span>校准 <small>心盾 · 心桥</small></span></a>
-    <nav aria-label="主要导航"><a href="#shield">评价校准</a><a href="#bridge">关怀协作</a><a href="#boundaries">使用边界</a></nav>
-    <span class="badge">交互原型 v0.2.0</span>
+    <a class="brand" href="#main"><span class="brandmark" aria-hidden="true">心</span><span>心盾<span class="brand-dot"> · </span>心桥<small>校准 / 评价与关怀</small></span></a>
+    <nav aria-label="主要导航"><a href="#shield">认识自己</a><a href="#bridge">连接关怀</a><a href="#feedback">体验反馈</a></nav>
+    <a class="preview-label" href="https://github.com/LuoFeiXiang1228/xindun-xinqiao" target="_blank" rel="noopener noreferrer">开源项目 ↗</a>
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <p class="eyebrow">CHECK BEFORE CONCLUDING</p>
-        <h1 id="hero-title">在下结论之前，<br>给核对留一个位置。</h1>
-        <p class="intro">评价需要背景，关怀需要下一步。<br>心盾关注填表前的核对，心桥关注协作中的交接。</p>
-        <div class="hero-actions"><a class="primary linkbutton" href="#shield">体验心盾 <span aria-hidden="true">↗</span></a><a class="quiet linkbutton" href="#bridge">查看协作流程 →</a></div>
-        <p class="caption">无账号 · 无上传 · 仅虚构案例</p>
-        <p class="small">一分钟体验：① 核对示例与复核 → ② 发起任务并切换角色推进 → ③ 生成体验反馈。</p>
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-line"></span> 让每一次判断，多一份理解</p>
+        <h1 id="hero-title">给评价一点留白，<br>让关怀<span class="soft-underline">稳稳抵达。</span></h1>
+        <p class="intro">不急着用此刻定义自己，<br>也让每一份关心，都有清晰的下一步。</p>
+        <div class="hero-actions"><a class="primary linkbutton" href="#shield">从一次核对开始 <span aria-hidden="true">↗</span></a><a class="text-link" href="#bridge">看看关怀如何连接 <span aria-hidden="true">→</span></a></div>
+        <p class="hero-footnote"><span class="little-ring"></span> 无需账号 <span>·</span> 不上传内容 <span>·</span> 虚构案例体验</p>
       </div>
-      <div class="hero-diagram" aria-label="设计原理：事实先记录，条件先核对，结论可复核">
-        <span class="diagram-label">一个原理，两个场景</span>
-        <div class="diagram-line"><span class="number">01</span><div><b>事实先记录</b><small>保留发生了什么</small></div><span aria-hidden="true">↘</span></div>
-        <div class="diagram-line emphasized"><span class="number">02</span><div><b>条件先核对</b><small>确认输入与流程条件</small></div><span aria-hidden="true">↘</span></div>
-        <div class="diagram-line"><span class="number">03</span><div><b>结论可复核</b><small>约定下一次确认</small></div><span aria-hidden="true">✓</span></div>
-        <p>“元闸门”是本项目的设计概念，<br>当前演示不证明规则有效性。</p>
+      <div class="hero-art">
+        <span class="art-sun" aria-hidden="true"></span><span class="art-leaf leaf-one" aria-hidden="true"></span><span class="art-leaf leaf-two" aria-hidden="true"></span>
+        <img src="assets/loving.svg" alt="手绘人物将一颗爱心轻轻抱在胸前" width="1024" height="768" fetchpriority="high">
+        <div class="art-note"><span aria-hidden="true">✧</span> 被理解，从留一点空间开始。</div>
+        <span class="art-caption">A LITTLE SPACE, A LITTLE CARE.</span>
       </div>
-
     </section>
-    <div class="notice"><span class="notice-mark" aria-hidden="true">i</span><p><strong>这里是演示，不是求助受理入口。</strong>所有状态只在当前页面内展示。角色切换、提交和转介均不连接真实服务。</p><button id="reset" class="quiet" type="button">重置演示</button></div>
+
+    <div class="principles" aria-label="项目的三个设计原则"><div><span>01</span><b>先看见事实</b><small>把发生的事，与判断分开</small></div><div><span>02</span><b>给结论留白</b><small>允许记录，也允许稍后复核</small></div><div><span>03</span><b>让关怀相连</b><small>每一步，都知道交给谁</small></div></div>
+    <div class="notice"><p><span class="notice-mark" aria-hidden="true">i</span>本页仅为虚构案例演示，不是求助受理入口。所有选择只在当前页面保留。</p><button id="reset" class="quiet small-button" type="button">重置体验 ↺</button></div>
     <p id="reset-status" class="sr-only" role="status"></p>
 
     <section id="shield" class="section" aria-labelledby="shield-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / 心盾 · 评价校准</p><h2 id="shield-title">先核对，再决定何时下结论。</h2></div><span class="badge muted">示例规则 · 非测评</span></div>
+      <div class="section-heading"><div><p class="eyebrow">01 / 心盾 · 评价校准</p><h2 id="shield-title">先照顾当下，<br>再看待自己的表现。</h2></div><p class="section-aside">从四个小问题开始，<br>给此刻的判断，多一点背景。</p></div>
       <div class="shield-grid">
-        <div class="card check-card">
-          <p>用四项虚构选择试试不同结果。选择不会保存或上传；无需填写真实状态。</p>
-          <div id="check-fields"></div>
-          <noscript><p>请启用 JavaScript 体验核对交互。此页面仍可阅读产品与边界说明。</p></noscript>
-          <div class="progress-row"><span id="progress">已选 0 / 4 项</span><div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div></div>
-        </div>
-        <aside class="card result-card" aria-labelledby="result-title">
-          <p class="eyebrow">核对提示</p><div class="result-icon" id="result-icon" aria-hidden="true">…</div>
-          <h3 id="result-title">等待完成核对</h3><p id="result-text" role="status" aria-live="polite" aria-atomic="true">完成四项示例选择后，再查看提示。</p>
-          <div class="result-divider"></div><p class="small">演示使用“两项需要留意”作为提示条件，未经效果验证。提示不限制记录，也不进入成绩、排名或奖惩。</p>
-        </aside>
+        <div class="card check-card"><div class="panel-heading"><span class="mini-symbol" aria-hidden="true">☼</span><div><h3>填表前，轻轻核对一下</h3><p>请选择虚构答案，体验不同提示。</p></div></div><div id="check-fields"></div><noscript>启用 JavaScript 后可以体验交互。</noscript><div class="progress-row"><span id="progress">已选 0 / 4 项</span><div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div></div></div>
+        <aside class="card result-card" aria-labelledby="result-title"><p class="eyebrow">给此刻的一点提示</p><img class="calm-illustration" src="assets/meditating.svg" alt="" width="1024" height="768" loading="lazy"><div class="result-icon" id="result-icon" aria-hidden="true">…</div><h3 id="result-title">等待完成核对</h3><p id="result-text" role="status" aria-live="polite" aria-atomic="true">完成四项示例选择后，再查看提示。</p><div class="result-divider"></div><p class="small">这是示例规则，不是健康测评。未触发提示不代表健康正常，也不证明评价有效。</p></aside>
       </div>
-      <article class="card exercise" aria-labelledby="review-heading">
-        <div><p class="eyebrow">把复核做下去</p><h3 id="review-heading">同一件事，可以重新理解。</h3><p>虚构案例：一次练习漏了两项步骤。先记事实，再保留暂时判断，最后试试补充信息后的复核。可直接体验，无须完成上方核对。</p></div>
-        <div class="exercise-actions" role="group" aria-label="评价复核练习">
-          <button id="record-fact" type="button" class="quiet">1. 记录示例事实</button>
-          <button id="record-judgment" type="button" class="quiet" disabled>2. 保留暂时判断</button>
-          <button id="review-judgment" type="button" class="primary" disabled>3. 补充信息后复核</button>
-        </div>
-        <ol id="review-log" class="timeline" aria-live="polite"><li>等待开始；练习不评价任何真实个人。</li></ol>
+
+      <article class="exercise" aria-labelledby="review-heading">
+        <div class="exercise-heading"><p class="eyebrow">换一个角度，再看一次</p><h3 id="review-heading">同一件事，也可以有新的理解。</h3><p>虚构案例：一次练习被记录为漏了两项步骤。点击三步，看看补充信息如何改变暂时判断。</p></div>
+        <div class="review-comparison"><div class="review-cell"><span class="step-index">01 / 事实</span><h4>先记录发生了什么</h4><p id="review-fact-copy">等待记录示例事实</p></div><div class="review-cell"><span class="step-index">02 / 暂时判断</span><h4>留出可以复核的空间</h4><p id="review-before-copy">完成事实记录后，再看暂时判断</p></div><div class="review-cell revised"><span class="step-index">03 / 补充与修订</span><h4>多一点信息，多一种理解</h4><p id="review-after-copy">补充信息后，在这里看修订结果</p></div></div>
+        <div class="exercise-actions" role="group" aria-label="评价复核练习"><button id="record-fact" type="button" class="quiet">1. 记录示例事实</button><button id="record-judgment" type="button" class="quiet" disabled>2. 保留暂时判断</button><button id="review-judgment" type="button" class="primary" disabled>3. 补充信息后复核</button></div>
+        <details class="subtle-details"><summary>查看完整复核记录</summary><ol id="review-log" class="timeline" aria-live="polite"><li>等待开始；练习不评价任何真实个人。</li></ol></details>
       </article>
     </section>
 
     <section id="bridge" class="section" aria-labelledby="bridge-title">
-      <div class="section-heading"><div><p class="eyebrow">02 / 心桥 · 关怀协作</p><h2 id="bridge-title">让每一步，都有下一位负责人。</h2></div><span class="badge muted">所有案例均为虚构</span></div>
-      <p class="section-intro">以下按钮切换讲解视角，不具备身份认证能力。真实权限必须由服务端验证。</p>
+      <div class="section-heading"><div><p class="eyebrow">02 / 心桥 · 关怀协作</p><h2 id="bridge-title">一份关心，<br>一步一步，得到回应。</h2></div><p class="section-aside">从发起到跟进，沿着这条线，<br>看清每一步和下一位负责人。</p></div>
       <article class="card journey-card" aria-labelledby="journey-heading">
-        <div class="task-header"><h3 id="journey-heading">亲自走完一项虚构任务</h3><span class="badge muted">DEMO-JOURNEY</span></div>
-        <p>案例：希望安排一次学习沟通。通过角色按钮切换视角，再执行可用动作。所有操作仅改变当前页面，没有消息发出。</p>
-      <div class="roles" role="group" aria-label="切换演示角色视角">
-        <button type="button" data-role="student" aria-pressed="true">学生本人</button>
-        <button type="button" data-role="peer" aria-pressed="false">朋辈观察者</button>
-        <button type="button" data-role="counselor" aria-pressed="false">辅导员</button>
-        <button type="button" data-role="professional" aria-pressed="false">授权专业人员</button>
-      </div>
-        <div class="journey-state" role="status"><strong id="journey-status">尚未发起</strong><span id="journey-owner">下一步负责人：学生本人</span></div>
-        <p id="journey-guide" class="small"></p>
-        <div id="journey-actions" class="exercise-actions"></div>
-        <details><summary>查看本页模拟操作记录</summary><ol id="journey-history" class="timeline"></ol></details>
-        <button type="button" id="restart-journey" class="quiet">重新开始此任务</button>
+        <div class="task-header"><div><span class="step-index">虚构案例 / DEMO-JOURNEY</span><h3 id="journey-heading">希望安排一次学习沟通</h3></div><button type="button" id="restart-journey" class="quiet small-button">重新开始 ↺</button></div>
+        <div class="journey-map" aria-label="任务进度" role="list"><div id="track-0" class="track-node" role="listitem"><span>1</span><b>发起请求</b><small>学生本人</small></div><div id="track-1" class="track-node" role="listitem"><span>2</span><b>授权受理</b><small>辅导员</small></div><div id="track-2" class="track-node" role="listitem"><span>3</span><b>沟通核对</b><small>辅导员</small></div><div id="track-3" class="track-node" role="listitem"><span>4</span><b>按需转介</b><small>专业人员</small></div><div id="track-4" class="track-node" role="listitem"><span>5</span><b>完成跟进</b><small>当前负责人</small></div></div>
+        <div class="journey-workspace"><div class="journey-current"><p class="eyebrow">现在走到这里</p><div class="journey-state" role="status"><strong id="journey-status">尚未发起</strong><span id="journey-owner">下一步负责人：学生本人</span></div><p id="journey-guide"></p><button id="next-role" class="role-suggestion" type="button" hidden>切换到下一位负责人 →</button><div id="journey-actions" class="exercise-actions"></div><p class="small">模拟操作不会发送消息，也不连接真实服务。</p></div><div class="journey-roles"><span class="step-index">体验谁的视角？</span><p>手动切换角色，观察不同职责。</p><div class="roles" role="group" aria-label="切换演示角色视角"><button type="button" data-role="student" aria-pressed="true">学生本人</button><button type="button" data-role="counselor" aria-pressed="false">辅导员</button><button type="button" data-role="professional" aria-pressed="false">授权专业人员</button><button type="button" data-role="peer" aria-pressed="false">朋辈观察者</button></div><p class="small">角色切换用于讲解，不代表真实身份认证或权限控制。</p></div></div>
+        <details class="subtle-details"><summary>查看本页模拟操作记录</summary><ol id="journey-history" class="timeline"></ol></details>
       </article>
-
-      <div class="bridge-grid">
-        <div class="card role-card"><p class="eyebrow">当前视角</p><h3 id="role-title">学生本人</h3><p id="role-description">自己的求助进度与公开说明。</p><div class="scope"><span>设计边界</span><p id="role-boundary">只能查看自己的记录。</p></div><button id="simulate" class="primary" type="button">模拟发起求助</button><p id="simulate-status" class="small" role="status">按钮仅展示模拟结果，不发送信息。</p></div>
-        <div class="card task-card"><div class="task-header"><h3>其他固定任务示例</h3><span id="task-count" class="badge muted">1 个示例</span></div><div id="task-list"></div><p class="small">以上为固定说明卡片，不随上方交互任务变化；所有案例均为虚构。</p></div>
-      </div>
-      <div class="flow-label"><h3>从观察到跟进</h3><span class="small">点击环节，查看该步的责任与边界</span></div>
-      <div class="flow" role="group" aria-label="协作流程环节">
-        <button type="button" data-step="0" aria-pressed="true"><span>01</span>观察 / 求助</button>
-        <button type="button" data-step="1" aria-pressed="false"><span>02</span>授权受理</button>
-        <button type="button" data-step="2" aria-pressed="false"><span>03</span>沟通核对</button>
-        <button type="button" data-step="3" aria-pressed="false"><span>04</span>需要时转介</button>
-        <button type="button" data-step="4" aria-pressed="false"><span>05</span>约定跟进</button>
-      </div>
-      <div class="card flow-detail" id="flow-detail" aria-live="polite"></div>
+      <details class="reference-details"><summary>想了解更多？查看角色边界与流程说明 <span aria-hidden="true">＋</span></summary><div class="reference-content"><div class="bridge-grid"><div class="card role-card"><p class="eyebrow">当前视角</p><h3 id="role-title">学生本人</h3><p id="role-description"></p><div class="scope"><span>设计边界</span><p id="role-boundary"></p></div><button id="simulate" class="quiet" type="button">查看模拟提交说明</button><p id="simulate-status" class="small" role="status"></p></div><div class="card task-card"><div class="task-header"><h3>其他固定任务示例</h3><span id="task-count" class="badge muted"></span></div><div id="task-list"></div><p class="small">固定示例不随上方交互任务变化。</p></div></div><div class="flow-label"><h3>各环节的职责</h3></div><div class="flow" role="group" aria-label="协作流程环节"><button type="button" data-step="0" aria-pressed="true"><span>01</span>观察 / 求助</button><button type="button" data-step="1" aria-pressed="false"><span>02</span>授权受理</button><button type="button" data-step="2" aria-pressed="false"><span>03</span>沟通核对</button><button type="button" data-step="3" aria-pressed="false"><span>04</span>需要时转介</button><button type="button" data-step="4" aria-pressed="false"><span>05</span>约定跟进</button></div><div class="card flow-detail" id="flow-detail" aria-live="polite"></div></div></details>
     </section>
 
-    <section id="feedback" class="section" aria-labelledby="feedback-heading">
-      <div class="section-heading"><div><p class="eyebrow">03 / 体验与反馈</p><h2 id="feedback-heading">把第一次使用的发现留下来。</h2></div></div>
-      <div class="card feedback-card">
-        <p>不收集姓名、健康信息或自由叙述。以下选择只在本页生成反馈草稿，不会自动提交。完成后可手动复制到 GitHub Issue。</p>
-        <div class="feedback-fields">
-          <label for="feedback-completion">虚构任务是否完成？<select id="feedback-completion"><option value="未尝试">未尝试</option><option value="独立完成">独立完成</option><option value="需要提示后完成">需要提示后完成</option><option value="未完成">未完成</option></select></label>
-          <label for="feedback-owner">是否清楚下一步由谁负责？<select id="feedback-owner"><option value="未判断">未判断</option><option value="清楚">清楚</option><option value="不清楚">不清楚</option></select></label>
-          <label for="feedback-meaning">“未触发复核提示”说明什么？<select id="feedback-meaning"><option value="未作答">请选择</option><option value="只是未触发示例规则">只是未触发示例规则</option><option value="代表健康正常">代表健康正常</option><option value="我不确定">我不确定</option></select></label>
-          <label for="feedback-friction">最需要改进的地方<select id="feedback-friction"><option value="暂未发现">暂未发现</option><option value="核对提示">核对提示</option><option value="评价复核">评价复核</option><option value="切换角色">切换角色</option><option value="转介与跟进">转介与跟进</option><option value="手机布局或键盘操作">手机布局或键盘操作</option></select></label>
-        </div>
-        <button id="generate-feedback" type="button" class="primary">生成本次反馈草稿</button>
-        <p id="feedback-message" role="status" class="small">尚未生成反馈。此页面不向作者发送任何内容。</p>
-        <label for="feedback-draft">可手动复制的反馈草稿</label><textarea id="feedback-draft" readonly rows="8" placeholder="生成后在这里查看；仅含固定选项与演示完成情况。"></textarea>
-        <p><a href="https://github.com/LuoFeiXiang1228/xindun-xinqiao/issues/new?template=feedback.md" target="_blank" rel="noopener noreferrer">打开 GitHub 反馈入口 ↗</a> <span class="small">需自行登录并提交；打开链接不会携带草稿内容。</span></p>
-      </div>
-    </section>
+    <section id="feedback" class="section feedback-section" aria-labelledby="feedback-heading"><div class="section-heading"><div><p class="eyebrow">03 / 你的体验，也很重要</p><h2 id="feedback-heading">一点反馈，<br>让下一步更好。</h2></div><p class="section-aside">记录哪里清楚，哪里需要改进。<br>草稿留在这里，由你决定是否分享。</p></div><details class="feedback-disclosure"><summary>填写本次体验反馈 <span aria-hidden="true">↗</span></summary><div class="card feedback-card"><p>仅使用固定选项，不填写姓名或健康信息。草稿不会自动提交。</p><div class="feedback-fields"><label for="feedback-completion">虚构任务是否完成？<select id="feedback-completion"><option value="未尝试">未尝试</option><option value="独立完成">独立完成</option><option value="需要提示后完成">需要提示后完成</option><option value="未完成">未完成</option></select></label><label for="feedback-owner">是否清楚下一步由谁负责？<select id="feedback-owner"><option value="未判断">未判断</option><option value="清楚">清楚</option><option value="不清楚">不清楚</option></select></label><label for="feedback-meaning">“未触发复核提示”说明什么？<select id="feedback-meaning"><option value="未作答">请选择</option><option value="只是未触发示例规则">只是未触发示例规则</option><option value="代表健康正常">代表健康正常</option><option value="我不确定">我不确定</option></select></label><label for="feedback-friction">最需要改进的地方<select id="feedback-friction"><option value="暂未发现">暂未发现</option><option value="核对提示">核对提示</option><option value="评价复核">评价复核</option><option value="切换角色">切换角色</option><option value="转介与跟进">转介与跟进</option><option value="手机布局或键盘操作">手机布局或键盘操作</option></select></label></div><button id="generate-feedback" type="button" class="primary">生成反馈草稿</button><p id="feedback-message" role="status" class="small"></p><label for="feedback-draft">反馈草稿 · 可手动复制</label><textarea id="feedback-draft" readonly rows="8" placeholder="生成的草稿会显示在这里"></textarea><p class="small">草稿由你核对后手动提交。提交 Issue 会公开你的 GitHub 账号与提交内容。 <a href="https://github.com/LuoFeiXiang1228/xindun-xinqiao/issues/new?template=feedback.md" target="_blank" rel="noopener noreferrer">提交体验反馈 ↗</a></p></div></details></section>
 
-    <section id="boundaries" class="section" aria-labelledby="boundary-title">
-      <div class="section-heading"><div><p class="eyebrow">04 / 使用边界</p><h2 id="boundary-title">把设计目标与当前能力说清楚。</h2></div></div>
-      <div class="boundary-grid">
-        <article class="card"><span class="boundary-number">A</span><h3>有交互，没有业务后台</h3><p>没有真实登录、消息通知、数据库或 AI 服务。角色与流程卡片展示的是设计目标。</p></article>
-        <article class="card"><span class="boundary-number">B</span><h3>有提示，没有健康判断</h3><p>示例规则不能用于筛查、诊断或给人贴标签。未触发提示不代表健康或评价有效。</p></article>
-        <article class="card"><span class="boundary-number">C</span><h3>有方案，真实试用需审核</h3><p>先用虚构数据验证流程。涉及真实学生或记录前，由实施方明确责任、必要授权和人工处理安排。</p></article>
-      </div>
-    </section>
+    <section id="boundaries" class="boundaries" aria-labelledby="boundary-title"><p class="eyebrow">保持清晰，也保持温柔</p><h2 id="boundary-title">关于这个小小的原型</h2><div class="boundary-grid"><div><h3>只用虚构案例</h3><p>不输入真实学生、学校或健康记录；刷新和重置会清除页面状态。</p></div><div><h3>给提示，不下诊断</h3><p>示例规则没有临床效度，不用于健康判断、成绩、排名或奖惩。</p></div><div><h3>连接流程，还需实践</h3><p>当前没有后台或真实消息服务。实际使用前仍需完善责任、授权与安全设计。</p></div></div></section>
   </main>
-  <footer><div><b>校准 · 心盾与心桥</b><p>© 2026 罗费翔（LuoFeiXiang） / 开源原型 v0.2.0</p></div><a href="https://github.com/LuoFeiXiang1228/xindun-xinqiao">项目文档与合作 ↗</a><a href="https://github.com/LuoFeiXiang1228/xindun-xinqiao/blob/main/LICENSE.md">代码 MIT · 文档 CC BY 4.0</a></footer>
+  <footer><div class="footer-brand"><b>心盾 · 心桥</b><p>愿评价有留白，关怀有回应。</p></div><div><p>© 2026 罗费翔（LuoFeiXiang）</p><p>评价校准与关怀协作 · v0.3.0</p></div><div class="credit"><a href="https://www.opendoodles.com/" target="_blank" rel="noopener noreferrer">插画 / Open Doodles · Pablo Stanley ↗</a><p>代码 MIT · 文档 CC BY 4.0 · 插画按来源授权</p></div></footer>
 </body>
 </html>
