@@ -37,7 +37,39 @@
     if (role === 'student') return [tasks[0]];
     return tasks.filter(task => task.role === role);
   }
-  const api = Object.freeze({ fields, evaluateCheck, tasksForRole });
+  const transitions = Object.freeze({
+    start: { from: 'draft', to: 'submitted', role: 'student', label: '发起虚构沟通请求', owner: '辅导员' },
+    accept: { from: 'submitted', to: 'accepted', role: 'counselor', label: '受理任务', owner: '辅导员' },
+    discuss: { from: 'accepted', to: 'discussed', role: 'counselor', label: '记录虚构沟通与约定', owner: '辅导员' },
+    refer: { from: 'discussed', to: 'referred', role: 'counselor', label: '发起模拟转介', owner: '授权专业人员' },
+    follow: { from: 'discussed', to: 'following', role: 'counselor', label: '直接约定跟进（无需转介）', owner: '辅导员' },
+    receive: { from: 'referred', to: 'following', role: 'professional', label: '接收模拟转介并约定跟进', owner: '授权专业人员' },
+    finish: { from: 'following', to: 'closed', label: '确认约定完成，结束演示', owner: '已结束' }
+  });
+  const statuses = Object.freeze({ draft: '尚未发起', submitted: '等待受理', accepted: '已受理', discussed: '已沟通核对', referred: '等待转介接收', following: '约定跟进', closed: '流程已完成' });
+  function createWorkflow() { return { status: 'draft', owner: '学生本人', history: [] }; }
+  function validateWorkflow(task) {
+    if (!task || !Object.hasOwn(statuses, task.status) || !Array.isArray(task.history)) throw new TypeError('Invalid workflow');
+  }
+  function availableActions(task, role) {
+    validateWorkflow(task);
+    if (!['student', 'peer', 'counselor', 'professional'].includes(role)) throw new TypeError('Unknown demo role');
+    return Object.entries(transitions).filter(([, item]) => item.from === task.status &&
+      (item.role ? item.role === role : (role === 'counselor' && task.owner === '辅导员') || (role === 'professional' && task.owner === '授权专业人员')))
+      .map(([key, item]) => ({ key, label: item.label }));
+  }
+  function transitionWorkflow(task, action, role) {
+    if (!availableActions(task, role).some(item => item.key === action)) throw new Error('Action unavailable for current stage and demo role');
+    const step = transitions[action];
+    return { status: step.to, owner: step.owner, history: [...task.history, { sequence: task.history.length + 1, action, role, label: step.label }] };
+  }
+  function workflowView(task, role) {
+    availableActions(task, role);
+    if (role === 'peer') return { visible: false, status: '此视角不展示任务与处置结果', owner: '', history: [] };
+    // Student sees their own progress summary; staff action history stays in staff views.
+    return { visible: true, status: statuses[task.status], owner: task.owner, history: role === 'student' ? [] : task.history.map(item => ({ ...item })) };
+  }
+  const api = Object.freeze({ fields, evaluateCheck, tasksForRole, createWorkflow, availableActions, transitionWorkflow, workflowView });
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.XinqiaoDemo = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
