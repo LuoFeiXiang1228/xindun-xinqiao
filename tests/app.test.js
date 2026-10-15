@@ -17,8 +17,9 @@ class Node {
   append(...nodes) { this.children.push(...nodes); }
   replaceChildren(...nodes) { this._text = ''; this.children = nodes; }
   setAttribute(name, value) { this.attributes[name] = value; }
-  addEventListener(event, handler) { this.listeners[event] = handler; }
-  dispatch(event) { assert.ok(this.listeners[event], `Missing event ${event}`); this.listeners[event](); }
+  addEventListener(event, handler) { (this.listeners[event] ||= []).push(handler); }
+  dispatch(event) { assert.ok(this.listeners[event], `Missing event ${event}`); this.listeners[event].forEach(handler => handler()); }
+  focus() { this.focused = true; }
 }
 function boot() {
   const demo = path.resolve(__dirname, '../demo');
@@ -49,6 +50,7 @@ function boot() {
   vm.createContext(sandbox);
   vm.runInContext(fs.readFileSync(path.join(demo, 'logic.js'), 'utf8'), sandbox);
   vm.runInContext(fs.readFileSync(path.join(demo, 'app.js'), 'utf8'), sandbox);
+  vm.runInContext(fs.readFileSync(path.join(demo, 'journey.js'), 'utf8'), sandbox);
   const choose = (name, value) => {
     const input = inputs.find(node => node.name === name && node.value === String(value));
     assert.ok(input);
@@ -98,4 +100,33 @@ test('reset removes every selection, returns default role and flow, and clears s
   assert.equal(app.stepButtons[0].attributes['aria-pressed'], 'true');
   assert.match(app.nodes.get('simulate-status').textContent, /仅展示模拟结果/);
   assert.match(app.nodes.get('reset-status').textContent, /已清除/);
+});
+
+test('interactive journey, review exercise and feedback reset together', () => {
+  const app = boot();
+  const act = text => {
+    const button = app.nodes.get('journey-actions').children.find(child => child.tagName === 'button' && child.textContent.includes(text));
+    assert.ok(button, `Missing action ${text}`); button.dispatch('click');
+  };
+  const switchRole = role => app.roleButtons.find(button => button.dataset.role === role).dispatch('click');
+  act('发起'); switchRole('counselor'); act('受理'); act('记录'); act('发起模拟转介');
+  switchRole('peer');
+  assert.doesNotMatch(app.nodes.get('journey-history').textContent, /第 1 步/);
+  switchRole('professional'); act('接收'); act('确认');
+  assert.equal(app.nodes.get('journey-status').textContent, '流程已完成');
+  assert.equal(app.nodes.get('journey-history').children.length, 6);
+  for (const id of ['record-fact', 'record-judgment', 'review-judgment']) app.nodes.get(id).dispatch('click');
+  assert.equal(app.nodes.get('review-log').children.length, 3);
+  app.nodes.get('feedback-completion').value = '独立完成';
+  app.nodes.get('feedback-owner').value = '清楚';
+  app.nodes.get('feedback-meaning').value = '只是未触发示例规则';
+  app.nodes.get('feedback-friction').value = '暂未发现';
+  app.nodes.get('generate-feedback').dispatch('click');
+  assert.match(app.nodes.get('feedback-draft').value, /本页虚构任务：已完成/);
+  assert.match(app.nodes.get('feedback-draft').value, /本页评价复核练习：已完成/);
+  app.nodes.get('reset').dispatch('click');
+  assert.equal(app.nodes.get('journey-status').textContent, '尚未发起');
+  assert.equal(app.nodes.get('feedback-draft').value, '');
+  assert.equal(app.nodes.get('review-log').children.length, 1);
+  assert.equal(app.nodes.get('record-judgment').disabled, true);
 });
