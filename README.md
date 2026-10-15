@@ -32,6 +32,7 @@ git clone https://github.com/LuoFeiXiang1228/xindun-xinqiao.git
 - **完整任务**：亲自推进受理、沟通、转介接收与跟进；也可选择无需转介分支。模拟操作记录随页面重置清除。
 - **评价复核**：用固定虚构案例体验事实记录、暂时判断和补充信息后的复核。
 - **体验反馈**：固定选项生成可手动复制的反馈草稿，不自动提交。
+- **可视化流程**：沿五步连线查看进度，直接切换到下一位负责人；事实、暂时判断和修订结果并列展示。
 
 一分钟操作：核对虚构答案 → 点击三步复核练习 → 学生发起任务 → 辅导员受理并沟通 → 模拟转介 → 专业人员接收并完成 → 生成反馈草稿。
 
@@ -53,6 +54,7 @@ git clone https://github.com/LuoFeiXiang1228/xindun-xinqiao.git
 - [开发路线与上线前检查](docs/roadmap.md)
 - [GitHub 发布步骤](docs/releasing.md)
 - [首轮可用性验证与空白记录](docs/usability.md) / [可认领的贡献任务](docs/contribution-tasks.md)
+- [视觉设计与第三方插画来源](docs/visual-design.md)
 - [贡献指南](CONTRIBUTING.md) / [安全问题报告](SECURITY.md) / [许可状态](LICENSE.md)
 
 ## 开发与检查
@@ -83,5 +85,7 @@ tests/                规则与演示数据测试
 ## 许可
 
 © 2026 罗费翔（LuoFeiXiang）。代码使用 [MIT](LICENSE-CODE)，说明文档使用 [CC BY 4.0](LICENSE-DOCS)。详细适用范围和署名示例见 [LICENSE.md](LICENSE.md)，作者信息见 [AUTHORS.md](AUTHORS.md)。
+
+Open Doodles 插画按其来源授权使用，属于项目许可的例外，详见 [素材说明](docs/visual-design.md)。
 
 本发布包不包含原始研究问卷、论文、内部通知、申报书、个人材料或真实台账，也不包含其他项目的材料。
