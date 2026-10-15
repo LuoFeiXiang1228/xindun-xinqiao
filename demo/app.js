@@ -5,8 +5,8 @@
   let activeRole = 'student';
   const byId = id => document.getElementById(id);
   const roles = {
-    student: { title: '学生本人', description: '自己的求助进度与公开说明。', boundary: '仅展示自己的求助记录；自用核对不自动进入协作台账。', action: '模拟发起求助', response: '模拟完成：这只是页面反馈。没有消息发出，没有人收到求助。' },
-    peer: { title: '朋辈观察者', description: '观察上报入口，不参与健康判断。', boundary: '只上报必要事实，不查看他人台账或处置结果。', action: '模拟观察上报', response: '模拟完成：没有记录上传，也没有生成真实处置任务。' },
+    student: { title: '学生本人', description: '自己的求助进度与公开说明。', boundary: '仅展示自己的求助记录；自用核对不自动进入协作台账。', action: '查看模拟提交说明', response: '模拟完成：这只是页面反馈。没有消息发出，没有人收到求助。' },
+    peer: { title: '朋辈观察者', description: '观察上报入口，不参与健康判断。', boundary: '只上报必要事实，不查看他人台账或处置结果。', action: '查看观察上报说明', response: '模拟完成：没有记录上传，也没有生成真实处置任务。' },
     counselor: { title: '辅导员', description: '被授权分派的任务与下一步动作。', boundary: '真实系统需校验任务、班级范围与用途，不默认开放全部健康档案。', action: '查看任务说明', response: '右侧显示虚构任务。真实受理、访问与转介能力尚未实现。' },
     professional: { title: '授权专业人员', description: '被授权范围内的转介与协作。', boundary: '访问需要明确范围、事由和审计；本页不授予任何真实权限。', action: '查看转介说明', response: '转介卡片仅解释设计，不进行真实接收或专业判断。' }
   };

@@ -35,15 +35,7 @@
         <div class="diagram-line"><span class="number">03</span><div><b>结论可复核</b><small>约定下一次确认</small></div><span aria-hidden="true">✓</span></div>
         <p>“元闸门”是本项目的设计概念，<br>当前演示不证明规则有效性。</p>
       </div>
-      <article class="card exercise" aria-labelledby="review-heading">
-        <div><p class="eyebrow">把复核做下去</p><h3 id="review-heading">同一件事，可以重新理解。</h3><p>虚构案例：一次练习漏了两项步骤。先记事实，再保留暂时判断，最后试试补充信息后的复核。可直接体验，无须完成上方核对。</p></div>
-        <div class="exercise-actions" role="group" aria-label="评价复核练习">
-          <button id="record-fact" type="button" class="quiet">1. 记录示例事实</button>
-          <button id="record-judgment" type="button" class="quiet" disabled>2. 保留暂时判断</button>
-          <button id="review-judgment" type="button" class="primary" disabled>3. 补充信息后复核</button>
-        </div>
-        <ol id="review-log" class="timeline" aria-live="polite"><li>等待开始；练习不评价任何真实个人。</li></ol>
-      </article>
+
     </section>
     <div class="notice"><span class="notice-mark" aria-hidden="true">i</span><p><strong>这里是演示，不是求助受理入口。</strong>所有状态只在当前页面内展示。角色切换、提交和转介均不连接真实服务。</p><button id="reset" class="quiet" type="button">重置演示</button></div>
     <p id="reset-status" class="sr-only" role="status"></p>
@@ -63,6 +55,15 @@
           <div class="result-divider"></div><p class="small">演示使用“两项需要留意”作为提示条件，未经效果验证。提示不限制记录，也不进入成绩、排名或奖惩。</p>
         </aside>
       </div>
+      <article class="card exercise" aria-labelledby="review-heading">
+        <div><p class="eyebrow">把复核做下去</p><h3 id="review-heading">同一件事，可以重新理解。</h3><p>虚构案例：一次练习漏了两项步骤。先记事实，再保留暂时判断，最后试试补充信息后的复核。可直接体验，无须完成上方核对。</p></div>
+        <div class="exercise-actions" role="group" aria-label="评价复核练习">
+          <button id="record-fact" type="button" class="quiet">1. 记录示例事实</button>
+          <button id="record-judgment" type="button" class="quiet" disabled>2. 保留暂时判断</button>
+          <button id="review-judgment" type="button" class="primary" disabled>3. 补充信息后复核</button>
+        </div>
+        <ol id="review-log" class="timeline" aria-live="polite"><li>等待开始；练习不评价任何真实个人。</li></ol>
+      </article>
     </section>
 
     <section id="bridge" class="section" aria-labelledby="bridge-title">
@@ -70,22 +71,23 @@
       <p class="section-intro">以下按钮切换讲解视角，不具备身份认证能力。真实权限必须由服务端验证。</p>
       <article class="card journey-card" aria-labelledby="journey-heading">
         <div class="task-header"><h3 id="journey-heading">亲自走完一项虚构任务</h3><span class="badge muted">DEMO-JOURNEY</span></div>
-        <p>案例：希望安排一次学习沟通。通过下方角色按钮切换视角，再执行可用动作。所有操作仅改变当前页面，没有消息发出。</p>
-        <div class="journey-state" role="status"><strong id="journey-status">尚未发起</strong><span id="journey-owner">下一步负责人：学生本人</span></div>
-        <p id="journey-guide" class="small"></p>
-        <div id="journey-actions" class="exercise-actions"></div>
-        <details><summary>查看本页模拟操作记录</summary><ol id="journey-history" class="timeline"></ol></details>
-        <button type="button" id="restart-journey" class="quiet">重新开始此任务</button>
-      </article>
+        <p>案例：希望安排一次学习沟通。通过角色按钮切换视角，再执行可用动作。所有操作仅改变当前页面，没有消息发出。</p>
       <div class="roles" role="group" aria-label="切换演示角色视角">
         <button type="button" data-role="student" aria-pressed="true">学生本人</button>
         <button type="button" data-role="peer" aria-pressed="false">朋辈观察者</button>
         <button type="button" data-role="counselor" aria-pressed="false">辅导员</button>
         <button type="button" data-role="professional" aria-pressed="false">授权专业人员</button>
       </div>
+        <div class="journey-state" role="status"><strong id="journey-status">尚未发起</strong><span id="journey-owner">下一步负责人：学生本人</span></div>
+        <p id="journey-guide" class="small"></p>
+        <div id="journey-actions" class="exercise-actions"></div>
+        <details><summary>查看本页模拟操作记录</summary><ol id="journey-history" class="timeline"></ol></details>
+        <button type="button" id="restart-journey" class="quiet">重新开始此任务</button>
+      </article>
+
       <div class="bridge-grid">
         <div class="card role-card"><p class="eyebrow">当前视角</p><h3 id="role-title">学生本人</h3><p id="role-description">自己的求助进度与公开说明。</p><div class="scope"><span>设计边界</span><p id="role-boundary">只能查看自己的记录。</p></div><button id="simulate" class="primary" type="button">模拟发起求助</button><p id="simulate-status" class="small" role="status">按钮仅展示模拟结果，不发送信息。</p></div>
-        <div class="card task-card"><div class="task-header"><h3>虚构任务视图</h3><span id="task-count" class="badge muted">1 个示例</span></div><div id="task-list"></div><p class="small">任务编号、时间和状态均为构造数据，没有对应的学生。</p></div>
+        <div class="card task-card"><div class="task-header"><h3>其他固定任务示例</h3><span id="task-count" class="badge muted">1 个示例</span></div><div id="task-list"></div><p class="small">以上为固定说明卡片，不随上方交互任务变化；所有案例均为虚构。</p></div>
       </div>
       <div class="flow-label"><h3>从观察到跟进</h3><span class="small">点击环节，查看该步的责任与边界</span></div>
       <div class="flow" role="group" aria-label="协作流程环节">
@@ -116,7 +118,7 @@
     </section>
 
     <section id="boundaries" class="section" aria-labelledby="boundary-title">
-      <div class="section-heading"><div><p class="eyebrow">03 / 使用边界</p><h2 id="boundary-title">把设计目标与当前能力说清楚。</h2></div></div>
+      <div class="section-heading"><div><p class="eyebrow">04 / 使用边界</p><h2 id="boundary-title">把设计目标与当前能力说清楚。</h2></div></div>
       <div class="boundary-grid">
         <article class="card"><span class="boundary-number">A</span><h3>有交互，没有业务后台</h3><p>没有真实登录、消息通知、数据库或 AI 服务。角色与流程卡片展示的是设计目标。</p></article>
         <article class="card"><span class="boundary-number">B</span><h3>有提示，没有健康判断</h3><p>示例规则不能用于筛查、诊断或给人贴标签。未触发提示不代表健康或评价有效。</p></article>
