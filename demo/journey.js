@@ -67,7 +67,7 @@
       `下一步负责人是否清楚：${byId('feedback-owner').value}`,
       `对“未触发复核提示”的理解：${meaning}`,
       `最需改进的地方：${byId('feedback-friction').value}`,
-      `本页虚构任务：${task.status === 'closed' ? '已完成' : '未完成'}`,
+      `本页虚构任务：${role === 'peer' ? '朋辈视角不展示处理结果' : task.status === 'closed' ? '已完成' : '未完成'}`,
       `本页评价复核练习：${reviewStage === 3 ? '已完成' : '未完成'}`,
       '仅基于虚构案例；不包含姓名、健康信息或真实台账。'
     ].join('\n');
