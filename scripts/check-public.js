@@ -8,10 +8,10 @@ const allowed = new Set([
   'README.md', 'LICENSE.md', 'LICENSE', 'LICENSE-CODE', 'LICENSE-DOCS',
   'CONTRIBUTING.md', 'SECURITY.md', 'CHANGELOG.md', 'AUTHORS.md', '.gitignore', '.gitattributes',
   'package.json', 'package-lock.json',
-  'demo/index.html', 'demo/styles.css', 'demo/logic.js', 'demo/app.js',
+  'demo/index.html', 'demo/styles.css', 'demo/logic.js', 'demo/app.js', 'demo/journey.js',
   'docs/product.md', 'docs/architecture.md', 'docs/privacy-and-boundaries.md',
-  'docs/roadmap.md', 'docs/releasing.md',
-  'scripts/check-public.js', 'tests/logic.test.js', 'tests/app.test.js',
+  'docs/roadmap.md', 'docs/releasing.md', 'docs/usability.md', 'docs/contribution-tasks.md',
+  'scripts/check-public.js', 'tests/logic.test.js', 'tests/app.test.js', 'tests/workflow.test.js',
   '.github/workflows/check.yml', '.github/ISSUE_TEMPLATE/feedback.md'
 ]);
 function walk(dir) {
@@ -63,14 +63,15 @@ for (const file of files) {
   }
 }
 const html = fs.readFileSync(path.join(root, 'demo/index.html'), 'utf8');
-const app = fs.readFileSync(path.join(root, 'demo/app.js'), 'utf8');
+const app = ['app.js', 'journey.js'].map(name => fs.readFileSync(path.join(root, 'demo', name), 'utf8')).join('\n');
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 if (new Set(ids).size !== ids.length) failures.push('Duplicate HTML IDs');
 for (const match of app.matchAll(/byId\('([^']+)'\)/g)) {
   if (!ids.includes(match[1])) failures.push(`Missing DOM element: ${match[1]}`);
 }
 if (!html.includes("connect-src 'none'") || !html.includes("form-action 'none'")) failures.push('Missing offline CSP constraints');
-if (/(?:src|href)="https?:/i.test(html) || /@import|url\(\s*["']?https?:/i.test(fs.readFileSync(path.join(root, 'demo/styles.css'), 'utf8'))) failures.push('External demo asset');
+// Outbound documentation links are allowed; remote embedded assets remain forbidden.
+if (/<(?:script|link|img|iframe|audio|video)\b[^>]*(?:src|href)="https?:/i.test(html) || /@import|url\(\s*["']?https?:/i.test(fs.readFileSync(path.join(root, 'demo/styles.css'), 'utf8'))) failures.push('External demo asset');
 if (process.argv.includes('--release')) {
   const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
   if (!pkg.license || pkg.license === 'UNLICENSED') failures.push('Release blocked: license selection is pending');
