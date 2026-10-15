@@ -16,7 +16,9 @@ GitHub 作者账号：[LuoFeiXiang1228](https://github.com/LuoFeiXiang1228)。
 
 ## 快速体验
 
-下载或克隆本仓库后，在本地用浏览器打开 [demo/index.html](demo/index.html)。无需安装依赖，也无需账号。GitHub 文件页展示的是源码；在线演示站点尚未部署。页面使用虚构案例，选择只在当前页面内存中存在；刷新或点击“重置演示”即可清除。
+**[打开在线演示](https://luofeixiang1228.github.io/xindun-xinqiao/)** · [提交体验反馈](https://github.com/LuoFeiXiang1228/xindun-xinqiao/issues/new?template=feedback.md) · [参与具体任务](docs/contribution-tasks.md)
+
+也可下载或克隆本仓库后，在本地用浏览器打开 [demo/index.html](demo/index.html)。无需安装依赖，也无需账号。页面使用虚构案例，选择只在当前页面内存中存在；刷新或点击“重置演示”即可清除。在线版本由 GitHub Pages 托管，平台会处理访问日志；页面交互不自动上传。
 
 ```sh
 git clone https://github.com/LuoFeiXiang1228/xindun-xinqiao.git
@@ -27,6 +29,11 @@ git clone https://github.com/LuoFeiXiang1228/xindun-xinqiao.git
 - **心盾**：四项填表前核对，展示未完成、建议复核、未触发示例提示三种结果；不输出健康状态或诊断。
 - **心桥**：切换协作角色、查看虚构任务与五步流程；角色切换用于讲解设计，没有身份认证能力。
 - **边界说明**：每个页面清楚标示模拟结果，提交入口不会向任何人发送信息。
+- **完整任务**：亲自推进受理、沟通、转介接收与跟进；也可选择无需转介分支。模拟操作记录随页面重置清除。
+- **评价复核**：用固定虚构案例体验事实记录、暂时判断和补充信息后的复核。
+- **体验反馈**：固定选项生成可手动复制的反馈草稿，不自动提交。
+
+一分钟操作：核对虚构答案 → 点击三步复核练习 → 学生发起任务 → 辅导员受理并沟通 → 模拟转介 → 专业人员接收并完成 → 生成反馈草稿。
 
 ## 项目价值与边界
 
@@ -45,6 +52,7 @@ git clone https://github.com/LuoFeiXiang1228/xindun-xinqiao.git
 - [隐私与使用边界](docs/privacy-and-boundaries.md)
 - [开发路线与上线前检查](docs/roadmap.md)
 - [GitHub 发布步骤](docs/releasing.md)
+- [首轮可用性验证与空白记录](docs/usability.md) / [可认领的贡献任务](docs/contribution-tasks.md)
 - [贡献指南](CONTRIBUTING.md) / [安全问题报告](SECURITY.md) / [许可状态](LICENSE.md)
 
 ## 开发与检查
