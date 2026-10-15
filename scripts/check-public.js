@@ -9,8 +9,9 @@ const allowed = new Set([
   'CONTRIBUTING.md', 'SECURITY.md', 'CHANGELOG.md', 'AUTHORS.md', '.gitignore', '.gitattributes',
   'package.json', 'package-lock.json',
   'demo/index.html', 'demo/styles.css', 'demo/logic.js', 'demo/app.js', 'demo/journey.js',
+  'demo/assets/loving.svg', 'demo/assets/meditating.svg',
   'docs/product.md', 'docs/architecture.md', 'docs/privacy-and-boundaries.md',
-  'docs/roadmap.md', 'docs/releasing.md', 'docs/usability.md', 'docs/contribution-tasks.md',
+  'docs/roadmap.md', 'docs/releasing.md', 'docs/usability.md', 'docs/contribution-tasks.md', 'docs/visual-design.md',
   'scripts/check-public.js', 'tests/logic.test.js', 'tests/app.test.js', 'tests/workflow.test.js',
   '.github/workflows/check.yml', '.github/ISSUE_TEMPLATE/feedback.md'
 ]);
@@ -35,6 +36,9 @@ for (const file of files) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
   if (!allowed.has(relative)) failures.push(`Unreviewed publication file: ${relative}`);
   const content = fs.readFileSync(file, 'utf8');
+  if (file.endsWith('.svg') && /<script\b|<foreignObject\b|\bon\w+\s*=|(?:href|src)\s*=\s*["'](?:https?:|\/\/|data:|javascript:)/i.test(content)) {
+    failures.push(`Active content or external reference in SVG: ${relative}`);
+  }
   for (const [label, expression] of patterns) {
     // Only the author's explicitly authorized public contact is exempted,
     // and only in the two reviewed contact documents.
@@ -70,6 +74,7 @@ for (const match of app.matchAll(/byId\('([^']+)'\)/g)) {
   if (!ids.includes(match[1])) failures.push(`Missing DOM element: ${match[1]}`);
 }
 if (!html.includes("connect-src 'none'") || !html.includes("form-action 'none'")) failures.push('Missing offline CSP constraints');
+if (/本地设计预览|本地视觉评审版|尚未上传|这是本地评审版/.test(html)) failures.push('Temporary local preview copy remains in release page');
 // Outbound documentation links are allowed; remote embedded assets remain forbidden.
 if (/<(?:script|link|img|iframe|audio|video)\b[^>]*(?:src|href)="https?:/i.test(html) || /@import|url\(\s*["']?https?:/i.test(fs.readFileSync(path.join(root, 'demo/styles.css'), 'utf8'))) failures.push('External demo asset');
 if (process.argv.includes('--release')) {
