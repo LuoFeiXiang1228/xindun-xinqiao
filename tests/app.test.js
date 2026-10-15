@@ -20,6 +20,11 @@ class Node {
   addEventListener(event, handler) { (this.listeners[event] ||= []).push(handler); }
   dispatch(event) { assert.ok(this.listeners[event], `Missing event ${event}`); this.listeners[event].forEach(handler => handler()); }
   focus() { this.focused = true; }
+  click() { this.dispatch('click'); }
+  querySelector(tag) {
+    if (!this.mockChildren) this.mockChildren = {};
+    return this.mockChildren[tag] ||= new Node(tag);
+  }
 }
 function boot() {
   const demo = path.resolve(__dirname, '../demo');
@@ -133,4 +138,28 @@ test('interactive journey, review exercise and feedback reset together', () => {
   assert.equal(app.nodes.get('feedback-draft').value, '');
   assert.equal(app.nodes.get('review-log').children.length, 1);
   assert.equal(app.nodes.get('record-judgment').disabled, true);
+});
+
+test('visual track and role handoff advance together without exposing peer progress', () => {
+  const app = boot();
+  assert.equal(app.nodes.get('track-0').dataset.state, 'active');
+  const action = () => app.nodes.get('journey-actions').children.find(child => child.tagName === 'button').dispatch('click');
+  action();
+  assert.equal(app.nodes.get('track-0').dataset.state, 'complete');
+  assert.equal(app.nodes.get('track-1').dataset.state, 'active');
+  assert.equal(app.nodes.get('next-role').hidden, false);
+  app.nodes.get('next-role').dispatch('click');
+  assert.equal(app.nodes.get('role-title').textContent, '辅导员');
+  assert.equal(app.nodes.get('next-role').hidden, true);
+  action(); action(); action();
+  app.nodes.get('next-role').dispatch('click');
+  assert.equal(app.nodes.get('role-title').textContent, '授权专业人员');
+  action(); action();
+  assert.equal(app.nodes.get('track-4').dataset.state, 'complete');
+  app.roleButtons.find(button => button.dataset.role === 'peer').dispatch('click');
+  for (let index = 0; index < 5; index++) assert.equal(app.nodes.get(`track-${index}`).dataset.state, 'private');
+  assert.equal(app.nodes.get('next-role').hidden, true);
+  app.nodes.get('reset').dispatch('click');
+  assert.equal(app.nodes.get('track-0').dataset.state, 'active');
+  assert.match(app.nodes.get('review-after-copy').textContent, /在这里看修订结果/);
 });
