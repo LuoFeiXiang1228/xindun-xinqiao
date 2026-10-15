@@ -124,6 +124,10 @@ test('interactive journey, review exercise and feedback reset together', () => {
   app.nodes.get('generate-feedback').dispatch('click');
   assert.match(app.nodes.get('feedback-draft').value, /本页虚构任务：已完成/);
   assert.match(app.nodes.get('feedback-draft').value, /本页评价复核练习：已完成/);
+  switchRole('peer');
+  app.nodes.get('generate-feedback').dispatch('click');
+  assert.match(app.nodes.get('feedback-draft').value, /朋辈视角不展示处理结果/);
+  assert.doesNotMatch(app.nodes.get('feedback-draft').value, /本页虚构任务：已完成/);
   app.nodes.get('reset').dispatch('click');
   assert.equal(app.nodes.get('journey-status').textContent, '尚未发起');
   assert.equal(app.nodes.get('feedback-draft').value, '');
